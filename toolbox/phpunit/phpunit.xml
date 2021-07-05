@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- https://phpunit.readthedocs.io/en/latest/configuration.html -->
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.5/phpunit.xsd"
+         backupGlobals="false"
+         colors="true"
+         cacheResultFile=".cache/tests"
+         bootstrap="../../tests/bootstrap.php">
+    <testsuites>
+        <testsuite name="all">
+            <directory>../../tests</directory>
+        </testsuite>
+        <testsuite name="unit">
+            <directory>../../tests/Unit</directory>
+        </testsuite>
+    </testsuites>
+    <coverage processUncoveredFiles="true">
+        <include>
+            <directory suffix=".php">../../src</directory>
+        </include>
+        <exclude>
+            <file>../../src/Kernel.php</file>
+        </exclude>
+        <report>
+            <clover outputFile="../../build/coverage/clover.xml"/>
+            <text outputFile="php://stdout" showUncoveredFiles="true" showOnlySummary="false"/>
+        </report>
+    </coverage>
+    <php>
+        <ini name="error_reporting" value="-1"/>
+        <ini name="xdebug.mode" value="coverage"/>
+        <server name="APP_ENV" value="test" force="true"/>
+        <server name="SHELL_VERBOSITY" value="-1"/>
+        <server name="KERNEL_CLASS" value="CG\Catalogue\Kernel"/>
+        <server name="SYMFONY_PHPUNIT_REMOVE" value=""/>
+        <server name="SYMFONY_PHPUNIT_VERSION" value="9.5"/>
+        <server name="KERNEL_DIR" value="app/" />
+        <env name="XDEBUG_MODE" value="coverage"/>
+        <env name="SYMFONY_DEPRECATIONS_HELPER" value="quiet[]=indirect&amp;quiet[]=other&amp;max[self]=0&amp;max[direct]=0" />
+    </php>
+    <listeners>
+        <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener">
+            <arguments>
+                <array>
+                    <element key="debug-class-loader"><integer>0</integer></element>
+                </array>
+            </arguments>
+        </listener>
+    </listeners>
+    <extensions>
+        <extension class="DAMA\DoctrineTestBundle\PHPUnit\PHPUnitExtension"/>
+    </extensions>
+</phpunit>
