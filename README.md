@@ -1,4 +1,5 @@
 # cborgas/symfony-api
+[![Build](https://github.com/cborgas/symfony-api/actions/workflows/build.yml/badge.svg)](https://github.com/cborgas/symfony-api/actions/workflows/build.yml)
 
 An opinionated Symfony API Skeleton
 
